@@ -34,7 +34,12 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
-
+// 引入接口相关的API
+import API from '@/api'
+// 引入并注册全局顶部三级导航组件
+import CategoryMenu from '@/components/CategoryMenu'
+Vue.component(CategoryMenu.name,CategoryMenu)
+Vue.prototype.$API = API
 new Vue({
   el: '#app',
   router,

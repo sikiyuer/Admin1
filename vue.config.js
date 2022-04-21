@@ -27,7 +27,8 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  // lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave:false,// 关闭校验工具
   productionSourceMap: false,
   devServer: {
     port: port,
@@ -36,8 +37,17 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    // 配置代理跨域
+    proxy:{
+      '/dev-api':{
+        target:'http://39.98.123.211',
+        pathRewrite:{'^/dev-api':''}
+      }
+    },
+    // before: require('./mock/mock-server.js') // mock的数据不再使用 改成真实的接口需要解决跨域问题
   },
+
+
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.

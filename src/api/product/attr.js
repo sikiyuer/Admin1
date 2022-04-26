@@ -22,4 +22,6 @@ export const reqAttrsInfo = (category1Id,category2Id,category3Id)=>request({
       method:'get'
 })
 // 增加属性的接口POST /admin/product/saveAttrInfo
-export const reqAddAttr = (data) => request({url:"/admin/product/saveAttrInfo",data,method:'post'})
+export const reqAddOrUpdateAttr = (data) => request({url:"/admin/product/saveAttrInfo",data,method:'post'})
+// 删除接口DELETE /admin/product/deleteAttr/{attrId}
+export const reqDelAttr = (attrId) => request({url:`/admin/product/deleteAttr/${attrId}`,method:'delete'})

@@ -73,13 +73,45 @@ export const constantRoutes = [
       path: 'spu',
       name: 'spu',
       component: () => import('@/views/products/Spu'),
-      meta: { title: 'spu管理' }
+      meta: { title: '商品实例spu' }
     },
     {
       path: 'sku',
       name: 'sku',
       component: () => import('@/views/products/Sku'),
-      meta: { title: 'sku管理'}
+      meta: { title: '商品规格sku'}
+    },
+    {
+      path: 'echart',
+      name: 'echart',
+      component: () => import('@/views/products/Echart'),
+      meta: { title: '数据报表'},
+    },{
+      path: 'exercise',
+      name: 'exercise',
+      component: () => import('@/views/products/Echart/exercise'),
+      meta: { title: '可视化练习'},
+      children:[
+        
+        {
+          path: 'canvas',
+          name: 'canvas',
+          component: () => import('@/views/products/Echart/exercise/canvas'),
+          meta: { title: 'canvas'}
+        },
+        {
+          path: 'svg',
+          name: 'svg',
+          component: () => import('@/views/products/Echart/exercise/svg'),
+          meta: { title: 'svg'}
+        },
+        {
+          path: 'echarttest',
+          name: 'echarttest',
+          component: () => import('@/views/products/Echart/exercise/echartTest'),
+          meta: { title: 'echarttest'}
+        },
+      ]
     }]
   },
 

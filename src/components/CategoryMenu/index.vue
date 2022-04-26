@@ -5,6 +5,7 @@
         <el-select
           v-model="listInfos.yijiId"
           placeholder="请选择"
+          :disabled ='!ShowTable'
           @change="handler1"
         >
           <el-option
@@ -18,6 +19,7 @@
 
        <el-form-item label="二级分类">
         <el-select
+          :disabled ='!ShowTable'
           v-model="listInfos.erjiId"
           placeholder="请选择"
           @change="handler2"
@@ -33,6 +35,7 @@
 
        <el-form-item label="三级分类">
         <el-select
+          :disabled ='!ShowTable'
           v-model="listInfos.sanjiId"
           placeholder="请选择"
           @change="handler3"
@@ -52,6 +55,7 @@
 <script>
 export default {
   name: "CategoryMenu",
+  props:['ShowTable'],
   data() {
     return {
       list1: [], //一级分类数据
@@ -107,7 +111,6 @@ export default {
     },
      async handler3() {
       let {sanjiId} = this.listInfos
-
       this.$emit('getId',{categoryId:sanjiId,level:3}) // 将id的对象传给父组件
 
     },

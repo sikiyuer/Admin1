@@ -39,6 +39,9 @@ import API from '@/api'
 // 引入并注册全局顶部三级导航组件
 import CategoryMenu from '@/components/CategoryMenu'
 Vue.component(CategoryMenu.name,CategoryMenu)
+// 引入并注册全局HintButton
+import HintButton from '@/components/HintButton'
+Vue.component(HintButton.name,HintButton)
 Vue.prototype.$API = API
 new Vue({
   el: '#app',

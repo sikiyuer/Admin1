@@ -57,7 +57,7 @@
       ></el-col>
        <el-col :span="6"
         ><el-card>
-          <Detail  title="活动效果" number='24666'>
+          <Detail  title="活动效果" number='78%'>
                 <template slot="echarts">
                    <Progress></Progress>
                 </template>
@@ -74,6 +74,7 @@
       ></el-col>
       
     </el-row>
+    
   </div>
 </template>
 

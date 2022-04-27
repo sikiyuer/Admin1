@@ -40,12 +40,17 @@ module.exports = {
     // 配置代理跨域
     proxy:{
       '/dev-api':{
-        target:'http://39.98.123.211',
+        // http://gmall-h5-api.atguigu.cn
+        // target:'http://39.98.123.211',
+        target:'http://gmall-h5-api.atguigu.cn',
         pathRewrite:{'^/dev-api':''}
       }
     },
-    // before: require('./mock/mock-server.js') // mock的数据不再使用 改成真实的接口需要解决跨域问题
+    after: require('./mock/mock-server.js') // mock的数据不再使用 改成真实的接口需要解决跨域问题
   },
+  //配置mock的数据
+// after:require('./mock/mock-server'),
+
 
 
   configureWebpack: {

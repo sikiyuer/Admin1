@@ -31,10 +31,13 @@ export default {
       'sidebar'
     ]),
     routes() {
-      return this.$router.options.routes
+      //需要遍历的是仓库计算出的路由
+      // return this.$router.options.routes
+      return this.$store.state.user.resultAllRoutes
     },
     activeMenu() {
       const route = this.$route
+      // const route = this.$store.state.user.resultRouters
       const { meta, path } = route
       // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {

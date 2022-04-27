@@ -11,14 +11,30 @@ mounted(){
     lineChart.setOption({
           xAxis:{
                 show:false,
-                type:'category'
+                  // 设置最小值和最大值
+                  min:0,max:100
           },
           yAxis:{
-                show:false
+                show:false,
+                //设置在Y轴均分
+                 type:'category'
           },
           series:{
-                type:'bar',data:[3,6,5,7,4,9,6,4,2],
-            color:'pink'
+                type:'bar',data:[78],
+            color:'purple',
+            //设置宽度
+            barWidth:10,
+            //设置背景颜色
+            showBackground:true,
+            backgroundStyle:{
+                  color:'#eee'
+            },
+            //设置文本
+            label:{
+                  show:true,
+                  formatter:"|",
+                  position:"right"
+            }
           },
           grid:{
                 left:0,

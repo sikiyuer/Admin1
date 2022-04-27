@@ -1,8 +1,10 @@
 <template>
   <div>
-    <!-- <router-link class="to" to="canvas">canvas</router-link>
-    <router-link class="to" to="svg">svg</router-link>
-    <router-link class="to" to="echarttest">echarttest</router-link> -->
+    <!-- <button v-show="$store.state.user.buttons.indexOf('按钮名')!=-1"><router-link class="to" to="canvas">canvas</router-link></button>
+    <button><router-link class="to" to="svg">svg</router-link></button>
+    <button><router-link class="to" to="echarttest">echarttest</router-link></button>
+     -->
+    
     <div class="main">
       <router-view></router-view>
     </div>

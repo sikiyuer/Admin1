@@ -4,6 +4,7 @@
 
       <div class="title-container">
         <h3 class="title">登录</h3>
+        <h6 class="tit">sikiyuer已有全部权限,可登录修改</h6>
       </div>
 
       <el-form-item prop="username">
@@ -43,12 +44,14 @@
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
 
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
+      <div class="tips" style="text-align:center">
+        <span style="margin-right:20px;">管理员</span>
+        <span style="margin-right:20px; color:#000">username: admin</span>
+        <span style="margin-right:20px; color:#000"> password: 111111</span>
       </div>
 
     </el-form>
+    <!-- <button @click="aaa">点击登录</button> -->
   </div>
 </template>
 
@@ -59,8 +62,9 @@ export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+      // if (validUsername(value)) {
+      if (value.length < 4) {
+        callback(new Error('can not be less than 4 digits'))
       } else {
         callback()
       }
@@ -74,8 +78,11 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+      
+        // username: 'admin',
+        username: 'sikiyuer',
+        password: 'sikiyuer'
+        // password: '111111'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -95,6 +102,7 @@ export default {
     }
   },
   methods: {
+   
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -223,6 +231,13 @@ $light_gray:#eee;
 
     .title {
       font-size: 26px;
+      color: $light_gray;
+      margin: 0px auto 40px auto;
+      text-align: center;
+      font-weight: bold;
+    }
+     .tit {
+      font-size: 16px;
       color: $light_gray;
       margin: 0px auto 40px auto;
       text-align: center;

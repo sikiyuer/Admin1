@@ -30,17 +30,24 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
+
+
+
+
+
+
+
+// 路由进进行拆分
+//常量路由 都展示
 export const constantRoutes = [
   { // 登录
     path: '/login',
     component: () => import('@/views/login/index'),
+    // component: () => import('@/views/dashboard/index'),
+
     hidden: true
   },
-  {// 404
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
-  },
+ 
   { // 首页
     path: '/',
     component: Layout,
@@ -51,6 +58,71 @@ export const constantRoutes = [
       component: () => import('@/views/dashboard/index'),
       meta: { title: '首页', icon: 'dashboard' }
     }]
+  },
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true }
+]
+// 异步路由--需要不同身份筛选展示
+ export const asyncRoutes = [
+   //权限管理
+   
+  { // 首页
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [{
+      path: 'dashboard',
+      name: 'Dashboard',
+      component: () => import('@/views/dashboard/index'),
+      meta: { title: '首页', icon: 'dashboard' }
+    }]
+  },
+   {
+    name: 'Acl',
+    path: '/acl',
+    component: Layout,
+    redirect: '/acl/user/list',
+    meta: {
+      title: '权限管理',
+      icon: 'el-icon-lock'
+    },
+    children: [
+      {
+        name: 'User',
+        path: 'user/list',
+        component: () => import('@/views/acl/user/list'),
+        meta: {
+          title: '用户管理(分配职务)',
+        },
+      },
+      
+      {
+        name: 'Role',
+        path: 'role/list',
+        component: () => import('@/views/acl/role/list'),
+        meta: {
+          title: '职务管理(分配权限)',
+        },
+      },
+      {
+        name: 'RoleAuth',
+        path: 'role/auth/:id',
+        component: () => import('@/views/acl/role/roleAuth'),
+        meta: {
+          activeMenu: '/acl/role/list',
+          title: '角色授权',
+        },
+        hidden: true,
+      },
+      {
+        name: 'Permission',
+        path: 'permission/list',
+        component: () => import('@/views/acl/permission/list'),
+        meta: {
+          title: '权限管理',
+        },
+      },
+    ]
   },
   { // 产品管理
     path: '/',
@@ -114,20 +186,26 @@ export const constantRoutes = [
       ]
     }]
   },
-
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+]
+// 任意路由  404
+export const anyRoutes = [
+ {// 404
+  path: '/404',
+  component: () => import('@/views/404'),
+  hidden: true
+},
 ]
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
+  //直接注册，无法识别身份
   routes: constantRoutes
 })
 
 const router = createRouter()
-
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+//重置路由方法
 export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router

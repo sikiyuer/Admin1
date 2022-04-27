@@ -2,15 +2,22 @@
   <div class="dashboard-container">
     <!-- <div class="dashboard-text">name: {{ name }}</div> -->
     <Card></Card>
+    <Sale></Sale> 
+    <Bott></Bott>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import Card from './Cards'
+import Sale from './Sale'
+import Bott from './bott'
 export default {
   name: 'Dashboard',
-  components:{Card},
+  components:{Card,Sale,Bott},
+  mounted() {
+    this.$store.dispatch('home/getData')
+  },
   computed: {
     ...mapGetters([
       'name'
